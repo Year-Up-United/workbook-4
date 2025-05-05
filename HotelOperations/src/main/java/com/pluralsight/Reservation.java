@@ -3,6 +3,56 @@ import java.util.Scanner;
 
 public class Reservation {
 
+    private String roomType;
+    private boolean weekend;
+    private int numberOfNights;
+
+    public Reservation(String roomType, boolean weekend, int numberOfNights) {
+        this.roomType = roomType;
+        this.weekend = weekend;
+        this.numberOfNights = numberOfNights;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public int getNumberOfNights() {
+        return numberOfNights;
+    }
+
+    public void setNumberOfNights(int numberOfNights) {
+        this.numberOfNights = numberOfNights;
+    }
+
+    public boolean isWeekend() {
+        return weekend;
+    }
+
+    public void setWeekend(boolean weekend) {
+        this.weekend = weekend;
+    }
+
+    public double getPrice()  {
+            double baseprice = 0;
+        if (roomType.equalsIgnoreCase("king")) {
+            baseprice = 139;
+        } else if (roomType.equalsIgnoreCase("double")) ;
+        baseprice = 124;
+    }
+        else{
+             throw new Exception("Invalid room type");
+    }
+        if(this.weekend){
+
+        baseprice *= 1.10;
+    }
+        return baseprice;
+    }
 //    Create the class with the following getters and setters:
 //    getRoomType()
 //    setRoomType(String roomType)
