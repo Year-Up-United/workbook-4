@@ -1,6 +1,6 @@
 package com.pluralsight;
-import java.util.Scanner;
 
+import java.time.LocalDateTime;
 
 public class Employee {
 
@@ -15,14 +15,10 @@ public class Employee {
         this.name = name;
         this.department = department;
         this.payRate = payRate;
-
+    }
 
     public int getEmployeeId() {
         return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
     }
 
     public String getName() {
@@ -49,14 +45,68 @@ public class Employee {
         this.payRate = payRate;
     }
 
-    public float getOvertimeHours() {
-        if(hoursWorked > 40){
-            return 40;
-        } else{
-            return hoursWorked;
-        }
+    public float getHoursWorked() {
+        return hoursWorked;
     }
 
     public void setHoursWorked(float hoursWorked) {
         this.hoursWorked = hoursWorked;
     }
+
+    public double getTotalPay(){
+        return (getRegularHours() * payRate) + (getOvertimeHours() * payRate * 1.5);
+    }
+
+    public float getRegularHours(){
+        if(hoursWorked > 40){
+            return 40;
+        }
+        else{
+            return hoursWorked;
+        }
+    }
+
+    public float getOvertimeHours(){
+//        if(hoursWorked > 40){
+//            return hoursWorked - 40;
+//        }
+//        else{
+//            return 0;
+//        }
+        return (hoursWorked > 40) ? hoursWorked - 40 : 0;
+    }
+
+    private double punchInTime;
+
+    public void punchIn(double time){
+        this.punchInTime = time;
+    }
+
+    public void punchIn(){
+        LocalDateTime dt = LocalDateTime.now();
+        double hours = dt.getHour();
+        double fractionOfHour = dt.getMinute() / 60f;
+        this.punchInTime = (hours + fractionOfHour);
+        //System.out.println("punch in time :" + this.punchInTime);
+
+    }
+
+    public void punchOut(double punchOutTime){
+        // System.out.println("punch out time :" + punchOutTime);
+        this.hoursWorked +=  (punchOutTime - this.punchInTime);
+
+    }
+
+    public void punchOut(){
+        LocalDateTime dt = LocalDateTime.now();
+        double hours = dt.getHour();
+        double minutes = dt.getMinute();
+        //System.out.println("minutes" + minutes);
+        double fractionOfHour = dt.getMinute() / 60f;
+        double punchOutTime = hours + fractionOfHour;
+        //System.out.println("punch out time :" + punchOutTime);
+
+        this.hoursWorked += (punchOutTime - this.punchInTime);
+    }
+
+}  

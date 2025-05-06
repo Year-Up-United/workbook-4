@@ -1,5 +1,4 @@
 package com.pluralsight;
-import java.util.Scanner;
 
 public class Reservation {
 
@@ -21,14 +20,6 @@ public class Reservation {
         this.roomType = roomType;
     }
 
-    public int getNumberOfNights() {
-        return numberOfNights;
-    }
-
-    public void setNumberOfNights(int numberOfNights) {
-        this.numberOfNights = numberOfNights;
-    }
-
     public boolean isWeekend() {
         return weekend;
     }
@@ -37,22 +28,36 @@ public class Reservation {
         this.weekend = weekend;
     }
 
-    public double getPrice()  {
-            double baseprice = 0;
-        if (roomType.equalsIgnoreCase("king")) {
-            baseprice = 139;
-        } else if (roomType.equalsIgnoreCase("double")) ;
-        baseprice = 124;
+    public int getNumberOfNights() {
+        return numberOfNights;
     }
-        else{
-             throw new Exception("Invalid room type");
-    }
-        if(this.weekend){
 
-        baseprice *= 1.10;
+    public void setNumberOfNights(int numberOfNights) {
+        this.numberOfNights = numberOfNights;
     }
+
+    public double getPrice() {
+        double baseprice = 0;
+
+        if(roomType.equalsIgnoreCase("king")){
+            baseprice = 139;
+        }
+        else if (roomType.equalsIgnoreCase("double")){
+            baseprice = 124;
+        }
+
+        if(this.weekend){
+            baseprice *= 1.10;
+        }
+
         return baseprice;
+
     }
+
+    public double getReservationTotal(){
+        return getPrice() * numberOfNights;
+    }
+
 //    Create the class with the following getters and setters:
 //    getRoomType()
 //    setRoomType(String roomType)

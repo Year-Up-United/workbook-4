@@ -1,41 +1,63 @@
 package com.pluralsight;
-import java.util.Scanner;
 
 public class Room {
 
-     private int numberOfBeds;
-     private double price;
-     private boolean occupied;
-     private boolean dirty;
-     private boolean available;
+    private int numberOfBeds;
+    private double price;
+    private boolean occupied;
+    private boolean dirty;
 
-    public int numberOfBeds(){
+    public Room(int numberOfBeds, double price) {
+        this.numberOfBeds = numberOfBeds;
+        this.price = price;
+        this.occupied = false;
+        this.dirty = false;
+    }
+
+    public int getNumberOfBeds() {
         return numberOfBeds;
     }
 
-    public void setNumberOfBeds(int numberOfBeds) {
-        this.numberOfBeds = numberOfBeds;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public boolean isOccupied() {
+        return occupied;
     }
 
-    public void setOccupied(boolean occupied) {
-        this.occupied = occupied;
+//    public void setOccupied(boolean occupied) {
+//        this.occupied = occupied;
+//    }
+
+    public boolean isDirty() {
+        return dirty;
     }
 
-    public void setDirty(boolean dirty) {
-        this.dirty = dirty;
+//    public void setDirty(boolean dirty) {
+//        this.dirty = dirty;
+//    }
+
+    public boolean isAvailable() {
+        return (!occupied) && (!dirty);
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void checkIn(){
+        this.occupied = true;
+        this.dirty = true;
+    }
 
-     }
-     public double getPrice(){
-         return price;
-     }
+    public void checkOut(){
+        this.occupied = false;
+    }
+
+    public void cleanRoom(){
+        this.dirty = false;
+    }
+
+
+
+}
 
 //    The Room class is responsible for knowing everything related to a hotel room. A
 //    room is only available if it is clean and not currently occupied. Create the class
@@ -48,5 +70,3 @@ public class Room {
 
 
 
-
-}
