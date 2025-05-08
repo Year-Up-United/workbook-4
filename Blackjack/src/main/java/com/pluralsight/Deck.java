@@ -30,16 +30,16 @@ public class Deck {
     }
 
     public Card deal() {
-        if(cards.size() > 0) {
+        if (cards.size() > 0) {
             Card c = cards.remove(0);
             return c;
-
         } else {
             return null;
         }
+    }
 
-        public int getSize() {
-            return cards.size();
-        }
+
+    public int getSize() {
+        return cards.size();
     }
 }
