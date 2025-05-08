@@ -8,9 +8,10 @@ public class Hand {
     private ArrayList<Card> cards;
 
     // this would allow to be dealt a card
-    public Hand(){
+    public Hand(String_playerName){
 
         cards = new ArrayList<Card>();
+        this
     }
 
     // adds cards to deal
